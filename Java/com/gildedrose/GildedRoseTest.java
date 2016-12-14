@@ -24,5 +24,14 @@ public class GildedRoseTest {
         assertEquals(8, app.items[0].quality);
     }
 
+    @Test
+    public void TheQualityOfAnItemIsNeverNegative() {
+        Item[] items = new Item[] { new Item("foo", 10, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
 
 }
