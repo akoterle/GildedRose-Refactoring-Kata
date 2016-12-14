@@ -15,4 +15,14 @@ public class GildedRoseTest {
         assertEquals(19, app.items[0].quality);
     }
 
+    @Test
+    public void OnceTheSellByDateHasPassedQualityDegradesTwiceAsFast() {
+        Item[] items = new Item[] { new Item("foo", 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+    }
+
+
 }
