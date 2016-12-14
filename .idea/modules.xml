@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Java/Java.iml" filepath="$PROJECT_DIR$/Java/Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GildedRose-Refactoring-Kata.iml" filepath="$PROJECT_DIR$/GildedRose-Refactoring-Kata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../kata/Java/kata.iml" filepath="$PROJECT_DIR$/../../kata/Java/kata.iml" />
     </modules>
   </component>
 </project>
