@@ -60,6 +60,33 @@ public class GildedRoseTest {
         assertEquals(80, app.items[0].quality);
     }
 
+    @Test
+    public void __Backstage_passes__QualityIncreasesBy2WhenThereAre10DaysOrLess() {
+        Item[] items = new Item[] {
+                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 9, 10)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(12, app.items[0].quality);
+        assertEquals(8, app.items[1].sellIn);
+        assertEquals(12, app.items[1].quality);
+    }
+    
+    @Test
+    public void __Backstage_passes__QualityIncreasesBy3WhenThereAre5DaysOrLess() {
+        Item[] items = new Item[] {
+                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 4, 10)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(13, app.items[0].quality);
+        assertEquals(3, app.items[1].sellIn);
+        assertEquals(13, app.items[1].quality);
+    }
 
 
 
