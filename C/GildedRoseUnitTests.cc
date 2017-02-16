@@ -39,7 +39,73 @@ TEST(TestGildedRoseGroup, the_quality_of_an_item_is_never_negative) {
     STRCMP_EQUAL("+5 Dexterity Vest", items[0].name);
     LONGS_EQUAL(0, items[0].quality);
 }
- 
+
+TEST(TestGildedRoseGroup, __Aged_Brie__actually_increases_in_quality_the_older_it_gets) {
+    Item items[2];
+    init_item(items, "Aged Brie", 2, 0);
+    update_quality(items, 1);
+    STRCMP_EQUAL("Aged Brie", items[0].name);
+    LONGS_EQUAL(1, items[0].quality);
+}
+
+TEST(TestGildedRoseGroup, __Sulfuras__being_a_legendary_item_never_has_to_be_sold_or_decreases_in_quality) {
+    Item items[2];
+    init_item(items, "Sulfuras, Hand of Ragnaros", 0, 80);
+    update_quality(items, 1);
+    STRCMP_EQUAL("Sulfuras, Hand of Ragnaros", items[0].name);
+    LONGS_EQUAL(0, items[0].sellIn);
+    LONGS_EQUAL(80, items[0].quality);
+}
+
+TEST(TestGildedRoseGroup, __Backstage_passes__like_aged_brie_increases_in_quality_as_its_sellIn_value_approaches_10_days_or_less) {
+    Item items[2];
+    init_item(items, "Backstage passes to a TAFKAL80ETC concert", 10, 20);
+    update_quality(items, 1);
+    STRCMP_EQUAL("Backstage passes to a TAFKAL80ETC concert", items[0].name);
+    LONGS_EQUAL(9, items[0].sellIn);
+    LONGS_EQUAL(22, items[0].quality);
+
+    init_item(items, "Backstage passes to a TAFKAL80ETC concert", 9, 20);
+    update_quality(items, 1);
+    STRCMP_EQUAL("Backstage passes to a TAFKAL80ETC concert", items[0].name);
+    LONGS_EQUAL(8, items[0].sellIn);
+    LONGS_EQUAL(22, items[0].quality);
+    
+}
+
+TEST(TestGildedRoseGroup, __Backstage_passes__like_aged_brie_increases_in_quality_as_its_sellIn_value_approaches_5_days_or_less) {
+    Item items[2];
+    init_item(items, "Backstage passes to a TAFKAL80ETC concert", 5, 20);
+    update_quality(items, 1);
+    STRCMP_EQUAL("Backstage passes to a TAFKAL80ETC concert", items[0].name);
+    LONGS_EQUAL(4, items[0].sellIn);
+    LONGS_EQUAL(23, items[0].quality);
+
+    init_item(items, "Backstage passes to a TAFKAL80ETC concert", 4, 20);
+    update_quality(items, 1);
+    STRCMP_EQUAL("Backstage passes to a TAFKAL80ETC concert", items[0].name);
+    LONGS_EQUAL(3, items[0].sellIn);
+    LONGS_EQUAL(23, items[0].quality);
+    
+}
+
+TEST(TestGildedRoseGroup, __Backstage_passes__quality_drops_to_0_after_the_concert) {
+    Item items[2];
+    init_item(items, "Backstage passes to a TAFKAL80ETC concert", 0, 20);
+    update_quality(items, 1);
+    STRCMP_EQUAL("Backstage passes to a TAFKAL80ETC concert", items[0].name);
+    LONGS_EQUAL(-1, items[0].sellIn);
+    LONGS_EQUAL(0, items[0].quality);
+}
+
+TEST(TestGildedRoseGroup, __Conjured__items_degrade_in_quality_twice_as_fast_as_normal_items) {
+    Item items[2];
+    init_item(items, "Conjured Mana Cake", 3, 6);
+    update_quality(items, 1);
+    STRCMP_EQUAL("Conjured Mana Cake", items[0].name);
+    LONGS_EQUAL(2, items[0].sellIn);
+    LONGS_EQUAL(4, items[0].quality);
+}
 
 void example()
 {
