@@ -14,16 +14,6 @@ TEST_GROUP(TestGildedRoseGroup)
   }
 };
 
-TEST(TestGildedRoseGroup, FirstTest)
-{
-    Item items[2];
-    init_item(items, "Foo", 0, 0);
-    update_quality(items, 1);
-    STRCMP_EQUAL("fixme", items[0].name);
-}
-
-
-
 TEST(TestGildedRoseGroup, at_the_end_of_each_day_the_system_lowers_both_quality_and_sellIn_values) {
     Item items[2];
     init_item(items, "+5 Dexterity Vest", 10, 20);
