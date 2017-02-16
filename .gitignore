@@ -1,5 +1,7 @@
 .idea
 *.pyc
-*.iml
 *.exe
 out/
+*.o
+*.iml
+C/CppUTest
