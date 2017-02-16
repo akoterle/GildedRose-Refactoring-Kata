@@ -31,6 +31,14 @@ TEST(TestGildedRoseGroup,  Once_the_sell_by_date_has_passed_Quality_degrades_twi
     LONGS_EQUAL(-1, items[0].sellIn);
     LONGS_EQUAL(8, items[0].quality);
 }
+
+TEST(TestGildedRoseGroup, the_quality_of_an_item_is_never_negative) {
+    Item items[2];
+    init_item(items, "+5 Dexterity Vest", 0, 0);
+    update_quality(items, 1);
+    STRCMP_EQUAL("+5 Dexterity Vest", items[0].name);
+    LONGS_EQUAL(0, items[0].quality);
+}
  
 
 void example()
